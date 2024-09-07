@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h4>Search Results :</h4>
+
+    {% if result %}
+        {% for user in result %}
+           <h5 class="text-center mt-1">{{ user.username }}</h5>
+        {% endfor %}
+    {% else %}
+    <h5 class="text-muted">No users found.</h5>
+    {% endif %}
+
+    {% if tweets %}
+    <h6 class="text-muted text-center">Latest XTweets</h6>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            {% for xtweet in tweets %}
+            <div class="col-md-4 mb-4 d-flex">
+                <div class="card text-white bg-dark border-secondary d-flex flex-column" style="height: 100%;">
+                    {% if xtweet.photo %}
+                    <img src="{{ xtweet.photo.url }}" class="card-img-top" alt="Tweet photo" style="object-fit: cover; height: 200px;">
+                    {% else %}
+                    <img src="{% static 'self.png' %}" class="card-img-top" alt="Default image" style="object-fit: cover; height: 200px;">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">@{{ xtweet.user.username }}</h5>
+                            <p class="mb-0">{{ xtweet.created_at }}</p>
+                        </div>
+                        <p class="card-text" id="text-container-{{ xtweet.id }}">
+                            {% if xtweet.text|length > 200 %}
+                            <span class="text-preview d-block" id="text-preview-{{ xtweet.id }}">
+                                {{ xtweet.text|slice:":200" }}...
+                            </span>
+                            <span class="text-full d-none" id="text-full-{{ xtweet.id }}">{{ xtweet.text }}</span>
+                            <a href="#" class="text-info" data-id="{{ xtweet.id }}" data-action="read-more" id="toggle-text-{{ xtweet.id }}">Read more</a>
+                            {% else %}
+                            {{ xtweet.text }}
+                            {% endif %}
+                        </p>
+                        {% if xtweet.user == user %}
+                        <div class="mt-auto text-center">
+                            <a href="{% url 'xtweet_edit' xtweet.id %}" class="btn btn-primary me-2">Edit</a>
+                            <a href="{% url 'xtweet_delete' xtweet.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <h5 class="text-muted">No XTweets found.</h5>
+    {% endif %}
+</div>
+
+{% endblock %}

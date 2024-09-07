@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}X{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="text-center">
+        <h5 class="text-white mb-4">
+            {% if form.instance.pk %}
+            Edit XTweet
+            {% else %}
+            Create XTweet
+            {% endif %}
+        </h5>
+        <form method="post" enctype="multipart/form-data" class="bg-light text-dark p-2 rounded">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-danger mt-3" type="submit">Post</button>
+        </form>
+        <div class="mt-3">
+            <a href="{% url 'xtweet_list' %}" class="btn btn-link text-light">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
