@@ -23,7 +23,6 @@
                         <h5 class="card-title mb-0">{{ xtweet.user.username }}</h5>
                         <p class="mb-0">{{ xtweet.created_at }}</p>
                     </div>
-                    <!-- Display the full text directly with a class for JavaScript -->
                     <p class="card-text xtweet-text">{{ xtweet.text }}</p>
                     {% if xtweet.user == user %}
                     <div class="mt-auto text-center">

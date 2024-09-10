@@ -7,16 +7,15 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="shortcut icon" href="{% static 'self.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'self.png' %}" type="image/png">
     <script src="{% static 'script.js' %}"></script>
     <title>{% block title %}XTweet{% endblock %}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="d-flex flex-column min-vh-100 bg-dark text-white"> <!-- Use a slightly lighter shade for the body -->
-
+<body class="d-flex flex-column min-vh-100 bg-dark text-white">
     {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Darker navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container d-flex">
             <div class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
                 {% if user.is_authenticated %}
@@ -57,16 +56,15 @@
     </nav>
     {% endif %}
 
-    <div class="container flex-grow-1 mt-5 text-white"> <!-- Keeps the content text white -->
+    <div class="container flex-grow-1 mt-5 text-white">
         {% block content %}{% endblock %}
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-0 mt-auto"> <!-- Darker footer -->
+    <footer class="bg-dark text-light py-0 mt-auto">
         <div class="container text-center">
             <p class="mb-0">2024 &copy; All rights reserved XTweet.</p>
             <div class="mt-2">
-                <!-- Social Media Links -->
                 <a href="https://github.com/Mahendra-Patel-18" class="text-light me-3" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.instagram.com/_mahendra.18_?igsh=YzllMWlkeWM1NG5r" class="text-light me-3" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/mahendrajay18/" class="text-light me-3" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
